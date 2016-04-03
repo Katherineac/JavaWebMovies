@@ -32,7 +32,7 @@ public class SortByDirectorServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-final PrintWriter out = response.getWriter();
+		final PrintWriter out = response.getWriter();
 		
 		try {
 			
