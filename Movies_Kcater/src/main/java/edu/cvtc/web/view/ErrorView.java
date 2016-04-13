@@ -1,17 +1,12 @@
 package edu.cvtc.web.view;
 
-import java.util.List;
-
-import edu.cvtc.web.model.Movie;
-
 /**
  * @author Katherine Cater
  *
  */
-public class MovieView {
-
-public static String buildHTML(List<Movie> movies) {
-		
+public class ErrorView {
+	
+	public static String buildHTML(final String errorMessage){
 		final StringBuilder out = new StringBuilder();
 		
 		out.append("<!DOCTYPE html>\n<html>\n\t<head>\n\t\t<title>Movies List</title>\n\t\t<style>");
@@ -37,26 +32,10 @@ public static String buildHTML(List<Movie> movies) {
 				+ " - <a href=\"SortByDirector\">Sort By Director</a>"
 				+ " - <a href=\"SortByLength\">Sort By Length</a>\n\t\t\t"
 				+ "- <a href=\"Search\">Search</a>\n\t\t</nav>\n\t\t");
-		if (movies.isEmpty()){
-			
-			out.append("<p>Sorry, we were unable to find any results.</p>");
-			
-		} else {
-
-			for (final Movie movie : movies) {
-				
-				out.append("\n\t\t\t<div class=\"movie\">\n\t\t\t\t<h2>" + movie.getTitle() + "</h2>");
-				out.append("\n\t\t\t\t<p>" + movie.getTitle() + " is directed by " + movie.getDirector() + ".");
-				out.append(" " + movie.getTitle() + " is " + movie.getLengthInMinutes() + " minutes long.</p>\n\t\t\t</div>\n");
-				
-			}
-			
-		}
-		
-		out.append("\n\t\t\t<footer>\n\t\t\t\t<p>&copy; Copyright 2016 Katherine Cater</p>\n\t\t\t</footer>\n\t\t</div>\n\t</body>\n</html>");
+		out.append("<p>" + errorMessage + "</p>");
+		out.append("\n\t\t\t<p>&copy; Copyright 2016 Katherine Cater</p>\n\t\t</body>\n\t</html>");
 		
 		return out.toString();
-		
 	}
-	
+
 }

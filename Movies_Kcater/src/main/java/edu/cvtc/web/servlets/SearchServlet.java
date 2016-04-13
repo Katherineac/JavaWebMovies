@@ -1,19 +1,26 @@
-package edu.cvtc.web.view;
+package edu.cvtc.web.servlets;
 
-import java.util.List;
+import java.io.IOException;
+import java.io.PrintWriter;
 
-import edu.cvtc.web.model.Movie;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
- * @author Katherine Cater
- *
+ * Servlet implementation class SearchServlet
  */
-public class MovieView {
+@WebServlet("/Search")
+public class SearchServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
 
-public static String buildHTML(List<Movie> movies) {
-		
-		final StringBuilder out = new StringBuilder();
-		
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		final PrintWriter out = response.getWriter();
 		out.append("<!DOCTYPE html>\n<html>\n\t<head>\n\t\t<title>Movies List</title>\n\t\t<style>");
 		out.append("\n\t\t\tbody{\n\t\t\t\twidth 750px; \n\t\t\t\theight: 100%; \n\t\t\t\tbackground-color: #8ab4e3;"); 
 		out.append("\n\t\t\t\tmargin: 0; \n\t\t\t\tpadding: 0; \n\t\t\t\ttext-align: center;\n\t\t\t}\n");
@@ -37,26 +44,21 @@ public static String buildHTML(List<Movie> movies) {
 				+ " - <a href=\"SortByDirector\">Sort By Director</a>"
 				+ " - <a href=\"SortByLength\">Sort By Length</a>\n\t\t\t"
 				+ "- <a href=\"Search\">Search</a>\n\t\t</nav>\n\t\t");
-		if (movies.isEmpty()){
-			
-			out.append("<p>Sorry, we were unable to find any results.</p>");
-			
-		} else {
-
-			for (final Movie movie : movies) {
-				
-				out.append("\n\t\t\t<div class=\"movie\">\n\t\t\t\t<h2>" + movie.getTitle() + "</h2>");
-				out.append("\n\t\t\t\t<p>" + movie.getTitle() + " is directed by " + movie.getDirector() + ".");
-				out.append(" " + movie.getTitle() + " is " + movie.getLengthInMinutes() + " minutes long.</p>\n\t\t\t</div>\n");
-				
-			}
-			
-		}
+		
+		out.append("\n\t<div class=\"container\">\n\t\t<form action=\"SearchByTitle\">"
+				+ "\n\t\t\t<label for=\"title\"><strong>Search By Title</strong></label>"
+				+ "\n\t\t\t<input name=\"title\" />"
+				+ "\n\t\t\t<input type=\"submit\" value=\"Search\" />"
+				+ "\n\t\t</form>\n\t</div>");
 		
 		out.append("\n\t\t\t<footer>\n\t\t\t\t<p>&copy; Copyright 2016 Katherine Cater</p>\n\t\t\t</footer>\n\t\t</div>\n\t</body>\n</html>");
-		
-		return out.toString();
-		
 	}
-	
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doGet(request, response);
+	}
+
 }
