@@ -27,11 +27,7 @@ public class ErrorView {
 		out.append("\n\t\t</style>\n\t</head>\n\t<body>");
 		out.append("\n\t\t<div id='wrapper'>\n\t\t\t<h1>Movies List</h1>\n");
 		
-		out.append("\n\t\t\t<nav>\n\t\t\t\t<a href=\"MovieList\">Unsorted</a>"
-				+ " - <a href=\"SortByTitle\">Sort By Title</a>\n\t\t\t\t"
-				+ " - <a href=\"SortByDirector\">Sort By Director</a>"
-				+ " - <a href=\"SortByLength\">Sort By Length</a>\n\t\t\t"
-				+ "- <a href=\"Search\">Search</a>\n\t\t</nav>\n\t\t");
+		out.append(NavView.buildNavigation());
 		out.append("<p>" + errorMessage + "</p>");
 		out.append("\n\t\t\t<p>&copy; Copyright 2016 Katherine Cater</p>\n\t\t</body>\n\t</html>");
 		

@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import edu.cvtc.web.view.NavView;
+
 /**
  * Servlet implementation class SearchServlet
  */
@@ -24,7 +26,7 @@ public class SearchServlet extends HttpServlet {
 		out.append("<!DOCTYPE html>\n<html>\n\t<head>\n\t\t<title>Movies List</title>\n\t\t<style>");
 		out.append("\n\t\t\tbody{\n\t\t\t\twidth 750px; \n\t\t\t\theight: 100%; \n\t\t\t\tbackground-color: #8ab4e3;"); 
 		out.append("\n\t\t\t\tmargin: 0; \n\t\t\t\tpadding: 0; \n\t\t\t\ttext-align: center;\n\t\t\t}\n");
-		out.append("\n\t\t\t.movie{\n\t\t\t\tbackground-color: #1569C7; \n\t\t\t\theight: 200px \n\t\t\t\tposition: relative;"); 
+		out.append("\n\t\t\t.main{\n\t\t\t\tbackground-color: #1569C7; \n\t\t\t\theight: 200px \n\t\t\t\tposition: relative;"); 
 		out.append("\n\t\t\t\twidth: 500px; \n\t\t\t\tpadding: 10px 0; \n\t\t\t\tborder: 1px solid #10549f; \n\t\t\t\tmargin: 10px auto;\n\t\t\t}\n");
 		out.append("\n\t\t\th1{\n\t\t\t\tbackground-color: #1569C7; \n\t\t\t\twidth: 500px; \n\t\t\t\tposition: relative;"); 
 		out.append("\n\t\t\t\theight: 50px; \n\t\t\t\tpadding-top: 20px; \n\t\t\t\tmargin: 10px auto; \n\t\t\t\tborder: 1px solid #10549f;\n\t\t\t}\n");
@@ -39,13 +41,8 @@ public class SearchServlet extends HttpServlet {
 		out.append("\n\t\t</style>\n\t</head>\n\t<body>");
 		out.append("\n\t\t<div id='wrapper'>\n\t\t\t<h1>Movies List</h1>\n");
 		
-		out.append("\n\t\t\t<nav>\n\t\t\t\t<a href=\"MovieList\">Unsorted</a>"
-				+ " - <a href=\"SortByTitle\">Sort By Title</a>\n\t\t\t\t"
-				+ " - <a href=\"SortByDirector\">Sort By Director</a>"
-				+ " - <a href=\"SortByLength\">Sort By Length</a>\n\t\t\t"
-				+ "- <a href=\"Search\">Search</a>\n\t\t</nav>\n\t\t");
-		
-		out.append("\n\t<div class=\"container\">\n\t\t<form action=\"SearchByTitle\">"
+		out.append(NavView.buildNavigation());
+		out.append("\n\t<div class=\"main\">\n\t\t<form action=\"SearchByTitle\">"
 				+ "\n\t\t\t<label for=\"title\"><strong>Search By Title</strong></label>"
 				+ "\n\t\t\t<input name=\"title\" />"
 				+ "\n\t\t\t<input type=\"submit\" value=\"Search\" />"

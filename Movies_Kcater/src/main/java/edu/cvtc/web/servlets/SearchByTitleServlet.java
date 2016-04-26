@@ -39,9 +39,9 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 			final String filePath = getServletContext().getRealPath(WorkbookUtility.INPUT_FILE);
 			
 			final MovieSearch movieSearch = new MovieSearchImpl();
-			final List<Movie> people = movieSearch.findMoviesByTitle(title, filePath);
+			final List<Movie> movies = movieSearch.findMoviesByTitle(title, filePath);
 			
-			final String htmlOutput = MovieView.buildHTML(people);
+			final String htmlOutput = MovieView.buildHTML(movies);
 			
 			out.append(htmlOutput);
 			
